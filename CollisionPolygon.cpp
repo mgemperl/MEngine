@@ -5,7 +5,7 @@
 
 using namespace Space;
 
-namespace SpaceSimNS
+namespace MEngineNS
 {
 
 CollisionPolygon::CollisionPolygon(const std::vector<Point2D<double>>& vertices)

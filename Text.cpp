@@ -1,5 +1,8 @@
 #include "Text.h"
 
+namespace MEngineNS
+{
+
 Text::Text()
 {
 }
@@ -86,5 +89,7 @@ int Text::Print(const char* text, RECT &rect, UINT format)
 	m_pGraphics->GetSprite()->SetTransform(&m_matrix);
 	return m_font->DrawTextA(m_pGraphics->GetSprite(), text, -1, &rect,
 		format, m_color);
+
+}
 
 }

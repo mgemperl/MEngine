@@ -3,7 +3,7 @@
 #include "Data.h"
 #include <string>
 
-namespace SpaceSimNS
+namespace MEngineNS
 {
 
 template<class entity_type>

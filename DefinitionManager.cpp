@@ -1,6 +1,6 @@
 #include "DefinitionManager.h"
 
-namespace SpaceSimNS
+namespace MEngineNS
 {
 
 DefinitionManager::DefinitionManager()

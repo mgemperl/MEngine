@@ -1,5 +1,8 @@
 #include "DrawablePolygon.h"
 
+namespace MEngineNS
+{
+
 DrawablePolygon::DrawablePolygon()
 {
 	m_pGraphics = NULL;
@@ -59,4 +62,6 @@ void DrawablePolygon::Draw()
 		m_pGraphics->FillPolygon(m_vertices, m_fill);
 		m_pGraphics->DrawPolygon(m_vertices, m_iThickness, m_color);
 	}
+}
+
 }

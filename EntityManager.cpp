@@ -1,6 +1,6 @@
 #include "EntityManager.h"
 
-namespace SpaceSimNS
+namespace MEngineNS
 {
 
 	void EntityManager::RegisterEntity(Entity* pEntity)

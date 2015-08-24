@@ -1,19 +1,14 @@
 #include "Player.h"
 #include "Input.h"
 #include "StateMachine.h"
-#include "AIShipOrderStates.h"
 #include "Data.h"
 
-namespace SpaceSimNS
+namespace MEngineNS
 {
 
-Player::Player(Input* pInput)
+Player::Player() : Controller<Entity>()
 {
-		m_pInput = pInput;
-
 		m_pControlMap = ControlMap();
-		m_pPlayerVessel = m_pEntity;
-		m_pPlayerFleet->AddMember(this);
 
 		m_pControlMap.emplace(0x57, ACCEL);
 		m_pControlMap.emplace(0x53, BACK);
@@ -33,32 +28,12 @@ Player::~Player()
 {
 }
 
-void Player::UpdateActions()
-{
-	for (std::pair<UINT, Action> control : m_pControlMap)
-	{
-		if (m_pInput->IsKeyDown(control.first))
-		{
-			m_pEntity->DoAction(control.second);
-		}
-		else
-		{
-			m_pEntity->StopAction(control.second);
-		}
-	}
-}
-
 void Player::HandleMessage(const Telegram& telegram)
 {
 
 }
 
 void Player::Update(double deltaT)
-{
-
-}
-
-void Player::SetVessel(Vessel* pVessel)
 {
 
 }

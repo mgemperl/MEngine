@@ -2,6 +2,9 @@
 
 #include "Graphics.h"
 
+namespace MEngineNS
+{
+
 class Text
 {
 
@@ -47,3 +50,4 @@ private:
 
 };
 
+}

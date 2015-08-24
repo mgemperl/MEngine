@@ -7,8 +7,8 @@
 
 namespace ConsoleNS
 {
-	const COLOR_ARGB FONT_COLOR = WHITE;
-	const COLOR_ARGB BACK_COLOR = BLACK & ALPHA50;
+	const COLOR_ARGB FONT_COLOR = MEngineNS::WHITE;
+	const COLOR_ARGB BACK_COLOR = MEngineNS::BLACK & MEngineNS::ALPHA50;
 	const Space::Point2D<float> TOP_LEFT = Space::Point2D<float>(10, 10);
 	const float WIDTH = 500;
 	const float HEIGHT = 400;
@@ -16,6 +16,9 @@ namespace ConsoleNS
 	const std::string FONT = "Courier New";
 	const int FONT_HEIGHT = 14;
 }
+
+namespace MEngineNS
+{
 
 class Console
 {
@@ -72,3 +75,4 @@ private:
 
 };
 
+}

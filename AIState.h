@@ -2,7 +2,7 @@
 
 #include "State.h"
 
-namespace SpaceSimNS
+namespace MEngineNS
 {
 
 class Message;

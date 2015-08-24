@@ -3,7 +3,7 @@
 #include "Clock.h"
 #include "Data.h"
 
-namespace SpaceSimNS
+namespace MEngineNS
 {
 
 MessageDispatcher* MessageDispatcher::Instance()

@@ -27,6 +27,9 @@
 // D3DFVF_DIFFUSE - The verticies contain diffuse color data
 #define D3DFVF_VERTEX (D3DFVF_XYZRHW | D3DFVF_DIFFUSE)
 
+namespace MEngineNS
+{
+
 // Colors
 const COLOR_ARGB WHITE = D3DCOLOR_ARGB(255, 255, 255, 255);
 const COLOR_ARGB BLACK = D3DCOLOR_ARGB(0, 0, 0, 0);
@@ -245,6 +248,8 @@ struct VertexBuffer
 {
 
 };
+
+}
 
 #endif
 

@@ -8,7 +8,7 @@
 
 using namespace Space;
 
-namespace SpaceSimNS
+namespace MEngineNS
 {
 
 Entity::Entity(const Space::Point2D<double>& inPos)

@@ -4,7 +4,7 @@
 #include <set>
 #include "Vector2D.h"
 
-namespace SpaceSimNS
+namespace MEngineNS
 {
 
 class CollisionPolygon

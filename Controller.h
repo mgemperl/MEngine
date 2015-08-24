@@ -2,8 +2,10 @@
 
 #include <stdlib.h>
 
-namespace SpaceSimNS
+namespace MEngineNS
 {
+
+	struct Telegram;
 
 template <class T>
 class Controller

@@ -3,7 +3,7 @@
 #include <set>
 
 
-namespace SpaceSimNS
+namespace MEngineNS
 {
 
 struct Telegram;

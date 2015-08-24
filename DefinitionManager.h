@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include "Data.h"
 
-namespace SpaceSimNS
+namespace MEngineNS
 {
 
 class DefinitionManager

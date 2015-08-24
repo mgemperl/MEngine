@@ -4,6 +4,9 @@
 #include "Graphics.h"
 #include "Point2D.h"
 
+namespace MEngineNS
+{
+
 class DrawablePolygon
 {
 
@@ -48,3 +51,5 @@ private:
 
 	bool m_bInitialized;
 };
+
+}

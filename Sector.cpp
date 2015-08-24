@@ -14,7 +14,7 @@
 
 using namespace Space;
 
-namespace SpaceSimNS
+namespace MEngineNS
 {
 
 Sector::Sector(System* pSystem, Graphics* pGraphics)

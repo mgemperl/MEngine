@@ -2,6 +2,9 @@
 
 using namespace Space;
 
+namespace MEngineNS
+{
+
 Console::Console()
 {
 	m_bInitialized = false;
@@ -47,4 +50,4 @@ bool Console::Initialize(Graphics* pGraphics, Input* pInput)
 	return pGraphics != NULL && pInput != NULL;
 }
 
-
+}

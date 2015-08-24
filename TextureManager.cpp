@@ -1,6 +1,9 @@
 #include "TextureManager.h"
 #include "Graphics.h"
 
+namespace MEngineNS
+{
+
 TextureManager::TextureManager(Graphics* pGraphics,
 	const char* filename, const char* textureName)
 {
@@ -56,4 +59,6 @@ void TextureManager::OnResetDevice()
 	{
 		m_pGraphics->LoadTexture(m_filename, TRANSPARENT, m_width, m_height, m_pTexture);
 	}
+}
+
 }

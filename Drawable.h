@@ -2,6 +2,9 @@
 
 #include "Graphics.h"
 
+namespace MEngineNS
+{ 
+
 class TextureManager;
 
 class Drawable
@@ -173,3 +176,4 @@ private:
 	
 };
 
+}

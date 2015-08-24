@@ -2,6 +2,9 @@
 #include "Graphics.h"
 #include "TextureManager.h"
 
+namespace MEngineNS
+{
+
 Drawable::Drawable()
 {
 	m_bInitialized = false;
@@ -146,4 +149,6 @@ void Drawable::UpdateAnimation(float deltaT)
 			UpdateRect();
 		}
 	}
+}
+
 }

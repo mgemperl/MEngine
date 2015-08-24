@@ -8,6 +8,8 @@
 #include <crtdbg.h>             
 #include "Game.h"
 
+using namespace MEngineNS;
+
 // Function prototypes
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int); 
 bool CreateMainWindow(HWND &, HINSTANCE, int);

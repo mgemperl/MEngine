@@ -13,7 +13,7 @@ namespace Space
 	class Vector2D;
 }
 
-namespace SpaceSimNS
+namespace MEngineNS
 {
 
 class MessageDispatcher;
@@ -60,10 +60,10 @@ public:
 	};
 
 	/** Set of entities sorted by the EntityPtrComp comparator struct **/
-	typedef std::set<SpaceSimNS::Entity*, Entity::EntityPtrComp> EntitySet;
+	typedef std::set<MEngineNS::Entity*, Entity::EntityPtrComp> EntitySet;
 
 	/** Set of constant entities sorted by the EntityPtrComp struct **/
-	typedef std::set<const SpaceSimNS::Entity*, Entity::EntityPtrComp> ConstEntitySet;
+	typedef std::set<const MEngineNS::Entity*, Entity::EntityPtrComp> ConstEntitySet;
 
 	/** ID number for an entity **/
 	typedef unsigned int ID;

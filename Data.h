@@ -70,7 +70,7 @@ const UCHAR ALT_KEY      = VK_MENU;     // Alt key
 const UCHAR ENTER_KEY    = VK_RETURN;   // Enter key
 
 // Structs and Enums
-namespace SpaceSimNS
+namespace MEngineNS
 {
 	enum ShipClass;
 	enum ClassType;

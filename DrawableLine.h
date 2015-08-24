@@ -2,6 +2,9 @@
 
 #include "DrawablePolygon.h"
 
+namespace MEngineNS
+{
+
 class DrawableLine : private DrawablePolygon
 {
 
@@ -40,3 +43,4 @@ public:
 	void Draw() { DrawablePolygon::Draw(); }
 };
 
+}

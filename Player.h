@@ -9,7 +9,7 @@ class Input;
 #include "Entity.h"
 
 
-namespace SpaceSimNS
+namespace MEngineNS
 {
 
 	typedef std::unordered_map<UINT, Action> ControlMap;
@@ -17,11 +17,10 @@ namespace SpaceSimNS
 class Player : public Controller<Entity>
 {
 public:
-	Player(Input* pInput);
+	Player();
 	~Player();
 
-	void UpdateActions();
-
+	void Initialize(Input* pInput) { m_pInput = pInput; }
 
 	inline ClassType GetClass() const { return PLAYER; }
 

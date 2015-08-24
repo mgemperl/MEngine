@@ -2,7 +2,7 @@
 
 #include "Entity.h"
 
-namespace SpaceSimNS
+namespace MEngineNS
 {
 
 class EntityManager

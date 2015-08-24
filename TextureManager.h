@@ -4,6 +4,9 @@
 #include <d3dx9.h>
 #include <d3d9helper.h>
 
+namespace MEngineNS
+{
+
 class Graphics;
 
 class TextureManager
@@ -39,4 +42,6 @@ private:
 		const char* textureName);
 
 };
+
+}
 

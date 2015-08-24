@@ -8,7 +8,7 @@
 #include "Entity.h"
 #include "Point2D.h"
 
-namespace SpaceSimNS
+namespace MEngineNS
 {
 
 class System;
