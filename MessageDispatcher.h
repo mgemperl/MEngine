@@ -16,7 +16,7 @@ public:
 
 	void DispatchTelegram(Telegram& message);
 
-	void Update(double elapsedTime);
+	void Update();
 
 	void ClearMessages();
 

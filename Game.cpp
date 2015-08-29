@@ -2,6 +2,7 @@
 
 #include "Game.h"
 #include "Clock.h"
+#include "MessageDispatcher.h"
 
 namespace MEngineNS
 {
@@ -18,6 +19,8 @@ Game::Game()
 	m_paused = false;             // game is not paused
 	m_pGraphics = NULL;
 	m_initialized = false;
+	m_pCurrentScene = new Scene();
+	m_dTimeSinceLastConstUpdate = 0;
 }
 
 //=============================================================================
@@ -25,6 +28,7 @@ Game::Game()
 //=============================================================================
 Game::~Game()
 {
+	delete m_pCurrentScene;
 	DeleteAll();                // free all reserved memory
 	ShowCursor(true);           // show cursor
 }
@@ -108,18 +112,20 @@ void Game::Initialize(HWND hw)
 	// initialize input, do not capture mouse
 	m_pInput->Initialize(m_hwnd, false);             // throws GameException
 
+	// Instantiate the current scene
+	m_pCurrentScene->Initialize(m_pGraphics);
+
 	// Initialize the static game clock class
 	Clock::Initialize();
 	m_timeStart = Clock::GameTimeMillis();
 
-	/*
-		// attempt to set up high resolution timer
-		if(QueryPerformanceFrequency(&m_timerFreq) == false)
-		throw(GameException(GameExceptionNS::FATAL_ERROR, "Error initializing high resolution timer"));
+	// Initialize the message dispatcher
+	MessageDispatcher::Instance()->Initialize();
 
-		QueryPerformanceCounter(&m_timeStart);        // get starting time
-		*/
+	// Load game textures
+	LoadTextures();
 
+	initialize();
 	m_initialized = true;
 }
 
@@ -131,8 +137,6 @@ void Game::RenderGame()
 	//start rendering
 	if (SUCCEEDED(m_pGraphics->BeginScene()))
 	{
-		// render is a pure virtual function that must be provided in the
-		// inheriting class.
 		Render();
 
 		//stop rendering
@@ -206,7 +210,6 @@ void Game::Run(HWND hwnd)
 
 		m_timeStart = m_timeEnd;
 
-		UpdateTime(m_frameTime);
 		RenderGame();                   // draw all game items
 
 		// Update game if not paused
@@ -223,6 +226,41 @@ void Game::Run(HWND hwnd)
 		// Call this after all key checks are done
 		m_pInput->Clear(InputNS::KEYS_PRESSED);
 	}
+}
+
+//=============================================================================
+// Update the game
+//=============================================================================
+void Game::Update(double deltaT)
+{
+	m_pCurrentScene->Update(deltaT);
+	m_dTimeSinceLastConstUpdate += deltaT;
+
+	if (m_dTimeSinceLastConstUpdate >= PHYS_UPDATE_RATE * 1000)
+	{
+		m_pCurrentScene->ConstUpdate();
+		m_dTimeSinceLastConstUpdate = 0;
+	}
+
+	MessageDispatcher::Instance()->Update();
+	update(deltaT);
+}
+
+//=============================================================================
+// Load game textures
+//=============================================================================
+void Game::LoadTextures()
+{
+	loadTextures();
+}
+
+//=============================================================================
+// Render the scene
+//=============================================================================
+void Game::Render()
+{
+	double interpolation = m_dTimeSinceLastConstUpdate / PHYS_UPDATE_RATE;
+	m_pCurrentScene->Render(interpolation, Space::Point2D<double>());
 }
 
 //=============================================================================

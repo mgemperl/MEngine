@@ -26,7 +26,7 @@
     <ClCompile Include="..\Input.cpp" />
     <ClCompile Include="..\MessageDispatcher.cpp" />
     <ClCompile Include="..\Player.cpp" />
-    <ClCompile Include="..\Sector.cpp" />
+    <ClCompile Include="..\Scene.cpp" />
     <ClCompile Include="..\Text.cpp" />
     <ClCompile Include="..\TextureManager.cpp" />
     <ClCompile Include="..\Vector2D.cpp" />
@@ -52,7 +52,7 @@
     <ClInclude Include="..\MessageDispatcher.h" />
     <ClInclude Include="..\Player.h" />
     <ClInclude Include="..\Point2D.h" />
-    <ClInclude Include="..\Sector.h" />
+    <ClInclude Include="..\Scene.h" />
     <ClInclude Include="..\State.h" />
     <ClInclude Include="..\StateMachine.h" />
     <ClInclude Include="..\Text.h" />

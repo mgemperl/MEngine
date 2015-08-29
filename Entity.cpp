@@ -16,7 +16,6 @@ Entity::Entity(const Space::Point2D<double>& inPos)
 	m_ID = Entity::NextValidID();
 	m_position = inPos;
 	m_allegience = SWISS;
-	m_pDrawable = NULL;
 	m_dOrientation = 0;
 	m_bCollider = false;
 	m_bDamageable = false;
@@ -30,7 +29,6 @@ Entity::Entity(const Space::Point2D<double>& inPos, Faction inAllegience)
 	m_ID = Entity::NextValidID();
 	m_position = inPos;
 	m_allegience = inAllegience;
-	m_pDrawable = NULL;
 	m_dOrientation = 0;
 	m_bCollider = false;
 	m_bDamageable = false;
@@ -39,21 +37,10 @@ Entity::Entity(const Space::Point2D<double>& inPos, Faction inAllegience)
 	EntityManager::Instance()->RegisterEntity(this);
 }
 
-bool Entity::InitializeDrawable(Graphics* pGraphics, int width, int height,
+bool Entity::Initialize(Graphics* pGraphics, int width, int height,
 	int nCols, const char* texture)
 {
-	ReleaseDrawable();
-	m_pDrawable = new Drawable();
-	return m_pDrawable->Initialize(pGraphics, width, height, nCols, texture);
-}
-
-void Entity::ReleaseDrawable()
-{
-	if (m_pDrawable != NULL)
-	{
-		delete m_pDrawable;
-		m_pDrawable = NULL;
-	}
+	return Drawable::Initialize(pGraphics, width, height, nCols, texture);
 }
 
 Entity::~Entity()
@@ -63,7 +50,6 @@ Entity::~Entity()
 		delete m_pPolygon;
 	}
 
-	ReleaseDrawable();
 	EntityManager::Instance()->RemoveEntity(m_ID);
 }
 
@@ -79,10 +65,7 @@ void Entity::SetCollisionPolygon(std::vector<Point2D<double>>& vertices)
 
 void Entity::Update(double deltaT)
 {
-	if (m_pDrawable != NULL)
-	{
-		m_pDrawable->UpdateAnimation(deltaT);
-	}
+	Drawable::UpdateAnimation(deltaT);
 }
 
 bool Entity::CanCollide(const Entity* other) const
@@ -128,11 +111,8 @@ bool Entity::CollidesWith(const Entity* other) const
 
 void Entity::Render(float interpolation, Point2D<double>& offset)
 {
-	if (m_pDrawable != NULL)
-	{
-		UpdateDrawable(interpolation, offset);
-		m_pDrawable->Draw(WHITE);
-	}
+	UpdateDrawable(interpolation, offset);
+	Drawable::Draw(WHITE);
 }
 
 bool Entity::operator<(const Entity& other) const
@@ -142,15 +122,10 @@ bool Entity::operator<(const Entity& other) const
 
 void Entity::UpdateDrawable(double interp, Space::Point2D<double>& offset)
 {
-	if (m_pDrawable != NULL)
-	{
-		Point2D<double> interpPos = GetInterpPos(interp) + offset;
-		m_pDrawable->SetX(interpPos.GetX() - m_pDrawable->GetWidth() / 2.0);
-		m_pDrawable->SetY(interpPos.GetY() - m_pDrawable->GetHeight() / 2.0);
-		m_pDrawable->SetAngle(Vector2D::SimplifyAngle(m_dOrientation + HALF_PI));
-
-		m_pDrawable->Draw();
-	}
+	Point2D<double> interpPos = GetInterpPos(interp) + offset;
+	Drawable::SetX(interpPos.GetX() - Drawable::GetWidth() / 2.0);
+	Drawable::SetY(interpPos.GetY() - Drawable::GetHeight() / 2.0);
+	Drawable::SetAngle(Vector2D::SimplifyAngle(m_dOrientation + HALF_PI));
 }
 
 }

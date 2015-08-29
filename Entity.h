@@ -17,11 +17,10 @@ namespace MEngineNS
 {
 
 class MessageDispatcher;
-class Sector;
 class EntityManager;
 class CollisionPolygon;
 
-class Entity
+class Entity : private Drawable
 {
 public:
 
@@ -81,8 +80,6 @@ public:
 	/** Meant to call protected InitializeDrawable methods **/
 	virtual bool InitializeDrawable(Graphics* pGraphics) = 0;
 
-	void ReleaseDrawable();
-
 	/** Accessor Methods **/
 
 	// Accessor for this entity's ID number
@@ -121,7 +118,7 @@ public:
 
 	// Accessor for the sector that contains this entity, 
 	// NULL for no sector
-	Sector* GetSector() const { return m_pSector; }
+	//Sector* GetSector() const { return m_pSector; }
 
 	// Checks whether or not this entity collides with damagers.
 	bool IsDamageable() const { return m_bDamageable; }
@@ -145,7 +142,7 @@ public:
 
 	// Sets which sector contains this entity,
 	// NULL for no sector
-	void SetSector(Sector* neoSector) { m_pSector = neoSector; }
+	//void SetSector(Sector* neoSector) { m_pSector = neoSector; }
 
 	// Sets the allegience of this entity
 	void SetAllegience(Faction newMaster) { m_allegience = newMaster; }
@@ -247,23 +244,15 @@ public:
 	// Compares entities by ship class
 	bool operator<(const Entity& other) const;
 
-
-
-
 protected:
 
-	/** Object used to send messages to other entities **/
-	MessageDispatcher* dispatch;
-
-	bool InitializeDrawable(Graphics* pGraphics, int width, int height, int nCols, 
+	bool Initialize(Graphics* pGraphics, int width, int height, int nCols, 
 		const char* textureName);
 
-	bool InitializeDrawable(Graphics* pGraphics, const char* textureName) 
+	bool Initialize(Graphics* pGraphics, const char* textureName) 
 	{ 
-		return InitializeDrawable(pGraphics, 0, 0, 0, textureName);
+		return Initialize(pGraphics, 0, 0, 0, textureName);
 	}
-
-	Drawable* GetDrawable() { return m_pDrawable; }
 
 private:
 
@@ -273,7 +262,7 @@ private:
 	const char* m_textureName;
 	
 	/** Sector containing this entity **/
-	Sector* m_pSector;
+	//Sector* m_pSector;
 
 	/** This entity's orientation in radians **/
 	double m_dOrientation; 
@@ -283,9 +272,6 @@ private:
 
 	/** This entity's allegience **/
 	Faction m_allegience;
-
-	/** The drawble for handling this entity's rendering **/
-	Drawable* m_pDrawable;
 
 	/** Whether this entity collides with damagers **/
 	bool m_bDamageable;

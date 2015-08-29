@@ -27,7 +27,7 @@ void MessageDispatcher::DispatchTelegram(Telegram& message)
 	}
 }
 
-void MessageDispatcher::Update(double elapsedTime)
+void MessageDispatcher::Update()
 {
 	double time = Clock::GameTimeSeconds();
 	std::set<Telegram>::const_iterator front = m_messageQueue.begin();

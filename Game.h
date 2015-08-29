@@ -1,6 +1,24 @@
-#ifndef _GAME_H                 // prevent multiple definitions if this 
-#define _GAME_H                 // ..file is included in more than one place
+#ifndef _GAME_H                
+#define _GAME_H                 
 #define WIN32_LEAN_AND_MEAN
+
+// To make a game from this engine, simply extend this Game class and override
+// the private initialize method to set up the game, the private loadTextures 
+// method to load any necessary textures during initialization (they can be 
+// loaded and unloaded as needed), and the private update method to update 
+// game logic.
+
+// Initializing would involve loading any game entity definitions to the DefinitionManager
+// and adding any necessary entities to the scene.
+
+// Loading textures is done by simply calling the method in Graphics.
+// For example, to load a texture in file (I need to change how textures 
+// are used in the engine)
+
+// Updating would involve editing the velocity, positions, and other properties of game entities,
+// as well as adding or removing them from the scene. The engine handles physics (position 
+// resulting from velocity and collision detections) internally, so worrying about that is 
+// unnecessary, unless something else is required.
 
 #include <windows.h>
 #include <Mmsystem.h>
@@ -8,10 +26,12 @@
 #include "Input.h"
 #include "Data.h"
 #include "GameException.h"
+#include "Scene.h"
 
 namespace MEngineNS
 {
 
+// Game class that handles updating and rendering the scene.
 class Game
 {
 protected:
@@ -26,7 +46,8 @@ protected:
 	float m_fps;                // frames per second
 	DWORD m_sleepTime;          // number of milli-seconds to sleep between frames
 	bool m_paused;             // true if game is paused
-	bool m_initialized;
+	bool m_initialized;		// true if the game has been initialized
+	Scene* m_pCurrentScene;	// current scene being updated and rendered
 
 public:
 	// Constructor
@@ -41,26 +62,26 @@ public:
 
 	// Initialize the game
 	// Pre: hwnd is handle to window
-	virtual void Initialize(HWND hwnd);
+	void Initialize(HWND hwnd);
 
 	// Call run repeatedly by the main message loop in WinMain
-	virtual void Run(HWND);
+	void Run(HWND);
 
 	// Call when the graphics device was lost.
 	// Release all reserved video memory so graphics device may be reset.
-	virtual void ReleaseAll();
+	void ReleaseAll();
 
 	// Recreate all surfaces and reset all entities.
-	virtual void ResetAll();
+	void ResetAll();
 
 	// Delete all reserved memory.
-	virtual void DeleteAll();
+	void DeleteAll();
 
 	// Render game items.
-	virtual void RenderGame();
+	void RenderGame();
 
 	// Handle lost graphics device
-	virtual void HandleLostGraphicsDevice();
+	void HandleLostGraphicsDevice();
 
 	// Return pointer to Graphics.
 	Graphics* GetGraphics()
@@ -81,13 +102,27 @@ public:
 	}
 
 	// Update game items.
-	virtual void Update(double delta);
+	void Update(double delta);
 
-	virtual void Render();
+	// Render the scene
+	void Render();
+
+	// Load game textures
+	void LoadTextures();
 
 private:
 
-	virtual void UpdateTime(double elapsedTime);
+	/** Time in milliseconds since last const update **/
+	double m_dTimeSinceLastConstUpdate;
+
+	/** Additional initialization logic (intended to be overridden) **/
+	virtual void initialize() {}
+
+	/** Additional update logic (intended to be overridden) **/
+	virtual void update(double deltaT) {}
+
+	/** Additional texture loading (intended to be overridden) **/
+	virtual void loadTextures() {}
 
 };
 

@@ -20,7 +20,6 @@ Player::Player() : Controller<Entity>()
 		m_pControlMap.emplace(VK_TAB, TARGET);
 		m_pControlMap.emplace(0x54, BESTTARGET);
 		m_pControlMap.emplace(0x43, UNTARGET);
-
 }
 
 

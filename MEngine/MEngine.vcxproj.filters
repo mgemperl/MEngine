@@ -57,9 +57,6 @@
     <ClCompile Include="..\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Sector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\Text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -73,6 +70,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Graphics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -131,9 +131,6 @@
     <ClInclude Include="..\Point2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Sector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\State.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -150,6 +147,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Graphics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
